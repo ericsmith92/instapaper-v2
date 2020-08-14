@@ -4,7 +4,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
-//create our Express app
 const app = express();
 
 //view engine setup
