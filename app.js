@@ -15,6 +15,8 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // pass variables to our templates + all requests
 app.use((req, res, next) => {
     res.locals.h = helpers;
