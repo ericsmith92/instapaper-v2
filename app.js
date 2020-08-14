@@ -3,6 +3,7 @@ const routes = require('./routes/index');
 const path = require('path');
 const bodyParser = require('body-parser');
 const helpers = require('./helpers');
+const errorHandlers = require('./handlers/errorHandlers');
 //create our Express app
 const app = express();
 
@@ -20,6 +21,16 @@ app.use((req, res, next) => {
     next();
 });
 
+//finally we hit our routes
 app.use('/', routes);
+
+// If that above routes didnt work, we 404 them and forward to error handler
+app.use(errorHandlers.notFound);
+
+
+if (app.get('env') === 'development') {
+    /* Development Error Handler - Prints stack trace */
+    app.use(errorHandlers.developmentErrors);
+  }
 
 module.exports = app;
