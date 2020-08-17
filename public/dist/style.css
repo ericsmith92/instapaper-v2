@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);html {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px; }
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -8,5 +9,46 @@
 
 body {
   margin: 0; }
+
+.header {
+  position: relative; }
+  .header_logo {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background-color: #03396c;
+    padding: 2rem 2rem 2.8rem 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.4rem; }
+    .header_logo__text {
+      position: relative;
+      font-size: 1.8rem; }
+      .header_logo__text:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 90%;
+        height: 0.2rem;
+        background-color: #fff;
+        bottom: -0.5rem;
+        left: 50%;
+        -ms-transform: translateX(-60%);
+            transform: translateX(-60%); }
+  .header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    left: 8rem;
+    background: linear-gradient(-90deg, #005b96, #03396c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-weight: 900;
+    letter-spacing: 0.2rem; }
 
 /*# sourceMappingURL=style.css.map*/

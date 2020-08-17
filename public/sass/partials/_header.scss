@@ -1,0 +1,47 @@
+.header{
+    position: relative;
+
+    &_logo{
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        background-color: #03396c;
+        padding: 2rem 2rem 2.8rem 2rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+        letter-spacing: 0.4rem;
+
+        &__text{
+            position: relative;
+            font-size: 1.8rem;
+
+            &:after{
+                content: '';
+                position: absolute;
+                display: block;
+                width: 90%;
+                height: 0.2rem;
+                background-color: #fff;
+                bottom: -0.5rem;
+                left: 50%;
+                transform: translateX(-60%);
+            }
+        }
+    }
+
+    h1{
+        font-size: 1.8rem;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8rem;
+        background: linear-gradient(-90deg,#005b96, #03396c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        font-weight: 900;
+        letter-spacing: 0.2rem;
+    }
+}

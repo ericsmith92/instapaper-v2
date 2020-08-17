@@ -6,7 +6,11 @@ html(lang='en')
     link(rel="shortcut icon" type="image/png" href="/images/icons/favicon.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
-    
+    block header
+      header.header
+        a.header_logo(href="/")
+          span.header_logo__text IP
+          h1 Instapaper
     .content
       block content
 
