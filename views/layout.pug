@@ -2,9 +2,13 @@ doctype html
 html(lang='en')
   head
     title= `${h.siteName}`
+    link(rel='stylesheet', href='/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="/images/icons/favicon.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     
     .content
       block content
+
+    block scripts
+      script(src="/dist/App.bundle.js")
