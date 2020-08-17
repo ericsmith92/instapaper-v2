@@ -51,4 +51,34 @@ body {
     font-weight: 900;
     letter-spacing: 0.2rem; }
 
+#search-handle {
+  height: 4.7rem;
+  max-width: 30rem;
+  margin: 0 auto;
+  position: relative; }
+  #search-handle label {
+    position: absolute;
+    left: -10000rem; }
+  #search-handle input[type="text"] {
+    width: 100%;
+    height: 3.7rem;
+    float: left;
+    padding: 1rem 1.5rem;
+    border: 0.1rem solid #a19d9d;
+    border-radius: 3rem;
+    transition: all .2s; }
+  #search-handle button {
+    width: 6rem;
+    height: calc(100% - 1rem);
+    float: left;
+    color: #fff;
+    border: none;
+    border-radius: 0 3rem 3rem 0;
+    padding: 0;
+    background-image: linear-gradient(-90deg, #03396c, #005b96);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1; }
+
 /*# sourceMappingURL=style.css.map*/

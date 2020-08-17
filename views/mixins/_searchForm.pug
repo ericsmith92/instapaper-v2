@@ -1,0 +1,7 @@
+mixin searchForm()
+
+    form#search-handle(action="/scrape" METHOD="GET")
+        label(for="search") Search
+        input(type="text" name="search" id="search" placeholder="Search..." autocomplete="off")
+        button(type="submit")
+            i.fa.fa-search
