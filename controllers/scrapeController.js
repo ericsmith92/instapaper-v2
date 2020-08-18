@@ -29,6 +29,6 @@ exports.scrapeAccount = async (req, res, next) => {
 
 exports.saveAccount = async (req, res) => {
     const account = await (new Account(req.body)).save();
-    console.log(account)
+    console.log(account);
     res.redirect('/');
 }
