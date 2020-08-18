@@ -1,5 +1,14 @@
+const mongoose = require('mongoose');
 //import environmental variables from our variables.env file
 require('dotenv').config({path: 'variables.env'});
+
+mongoose.connect(process.env.DATABASE);
+mongoose.connection.on('error', (err) => {
+  console.error(`failed to connect → ${err.message}`);
+});
+
+//import all of our models
+require('./models/Account');
 
 const app = require('./app');
 
