@@ -1,6 +1,6 @@
 mixin searchForm()
 
-    form#search-handle(action="/scrape" METHOD="GET")
+    form#search-handle(action="/scrape" METHOD="POST")
         label(for="search") Search
         input(type="text" name="search" id="search" placeholder="Search..." autocomplete="off")
         button(type="submit")

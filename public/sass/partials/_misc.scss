@@ -1,0 +1,12 @@
+.content{
+    min-width: 100vw;
+    min-height: calc(100vh - 67px);
+}
+
+main{
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}

@@ -10,7 +10,7 @@ const accountSchema = new mongoose.Schema({
         type: Date,
         defaut: Date.now
     },
-    imageSource: [String]
+    imageSources: [String]
 });
 
 module.exports = mongoose.model('Account', accountSchema);
