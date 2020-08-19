@@ -20,7 +20,9 @@ exports.scrapeAccount = async (req, res, next) => {
         const sources = availableThumbnails.map(thumbnail => thumbnail.node.thumbnail_src);
         req.body.imageSources = sources;
         req.body.handle = req.body.search;
+        req.body.created = Date.now();
         next();
+        return;
     })  
     .catch(function (error) {
         console.log(error);
@@ -29,6 +31,5 @@ exports.scrapeAccount = async (req, res, next) => {
 
 exports.saveAccount = async (req, res) => {
     const account = await (new Account(req.body)).save();
-    console.log(account);
     res.redirect('/');
 }
