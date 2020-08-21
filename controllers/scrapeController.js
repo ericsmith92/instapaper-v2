@@ -9,38 +9,13 @@ exports.homePage = (req, res) => {
     res.render('index');
 }
 
-exports.scrapeAccount = async (req, res, next) => {
-    axios.get(`https://www.instagram.com/${req.body.search}/`)
-    .then(response => {
-        return response.data;
-    })
-    .then(data =>{
-        const dom = new JSDOM(data);
-        const pageSourceJSON = JSON.parse(dom.window.document.querySelectorAll('script[type="text/javascript"]')[3].textContent.replace('window._sharedData = ', '').slice(0, -1));
-        const availableThumbnails = pageSourceJSON['entry_data']["ProfilePage"][0].graphql.user.edge_owner_to_timeline_media.edges;
-        const sources = availableThumbnails.map(thumbnail => thumbnail.node.thumbnail_src);
-        req.body.imageSources = sources;
-        req.body.handle = req.body.search;
-        req.body.created = Date.now();
-        next();
-        return;
-    })  
-    .catch(function (error) {
-        console.log(error);
-    });
-}
-
-exports.saveAccount = async (req, res) => {
-    const account = await (new Account(req.body)).save();
-    res.render('preview', { account });
-}
-
 exports.checkAccount = async (req, res, next) => {   
     const account = await Account.findOne( { handle:  req.body.search } );
     
     //if no account exists, lets pass to scrape
     if(!account){
-        next();
+        req.body.accountExists = false;
+        scrapeAccount(req, res);
         return;
     }
 
@@ -54,12 +29,51 @@ exports.checkAccount = async (req, res, next) => {
         console.log('scraped under an hour ago', millisecsHour - diff);
         res.render('preview', { account });
     }else{
-    //otherwise, it exists but needs to be scraped again, send to update
-        //res.json({diff});
-        next('/update');
+        req.body.accountExists = true;
+        scrapeAccount(req, res);
+        return;
     }
 }
 
-exports.update = (req, res) => {
-    res.json({'it': 'worked'});
+scrapeAccount = async (req, res) => {
+    axios.get(`https://www.instagram.com/${req.body.search}/`)
+    .then(response => {
+        return response.data;
+    })
+    .then(data =>{
+        const dom = new JSDOM(data);
+        const pageSourceJSON = JSON.parse(dom.window.document.querySelectorAll('script[type="text/javascript"]')[3].textContent.replace('window._sharedData = ', '').slice(0, -1));
+        const availableThumbnails = pageSourceJSON['entry_data']["ProfilePage"][0].graphql.user.edge_owner_to_timeline_media.edges;
+        const sources = availableThumbnails.map(thumbnail => thumbnail.node.thumbnail_src);
+        req.body.imageSources = sources;
+        
+        if(!req.body.accountExists){
+            saveAccount(req, res);
+        }else{
+            console.log('passing to update');
+            updateAccount(req, res);
+        }
+        return;
+    })  
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+saveAccount = async (req, res) => {
+    req.body.handle = req.body.search;
+    req.body.created = Date.now();
+    const account = await (new Account(req.body)).save();
+    res.render('preview', { account });
+}
+
+updateAccount = async (req, res) => {
+    //res.render('preview', { account });
+    req.body.created = Date.now();
+    const account = await Account.findOneAndUpdate({ handle: req.body.search }, req.body, {
+        new: true,
+        runValidators: true
+    }).exec();
+
+    res.render('preview', { account });
 }
