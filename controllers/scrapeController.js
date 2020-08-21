@@ -26,7 +26,7 @@ exports.checkAccount = async (req, res, next) => {
 
     //if less than an hour ago, head directly to preview
     if(diff <= millisecsHour){
-        console.log('scraped under an hour ago', millisecsHour - diff);
+        console.log('scraped under an hour ago', diff);
         res.render('preview', { account });
     }else{
         req.body.accountExists = true;
@@ -64,12 +64,13 @@ saveAccount = async (req, res) => {
     req.body.handle = req.body.search;
     req.body.created = Date.now();
     const account = await (new Account(req.body)).save();
+    
     res.render('preview', { account });
 }
 
 updateAccount = async (req, res) => {
-    //res.render('preview', { account });
     req.body.created = Date.now();
+    
     const account = await Account.findOneAndUpdate({ handle: req.body.search }, req.body, {
         new: true,
         runValidators: true

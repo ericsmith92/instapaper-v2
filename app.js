@@ -5,10 +5,14 @@ const bodyParser = require('body-parser');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
 const app = express();
+const mongoose = require('mongoose');
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+//see: https://mongoosejs.com/docs/deprecations.html#findandmodify for why below is necessary
+mongoose.set('useFindAndModify', false);
 
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json());
