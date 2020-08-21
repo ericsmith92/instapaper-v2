@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    .images
+        each image in account.imageSources
+            img(src=`${image}`)

@@ -51,6 +51,28 @@ body {
     font-weight: 900;
     letter-spacing: 0.2rem; }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0; }
+  footer .copyright {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px; }
+  footer .copyright i {
+    background: linear-gradient(-90deg, #8d0b0b, #f21111);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-size: 16px; }
+
+@media all and (min-width: 768px) {
+  footer {
+    padding: 30px 0; } }
+
 #search-handle {
   height: 4.7rem;
   max-width: 30rem;
@@ -96,5 +118,10 @@ main {
   left: 50%;
   -ms-transform: translate(-50%, -30%);
       transform: translate(-50%, -30%); }
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 26px;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map*/
