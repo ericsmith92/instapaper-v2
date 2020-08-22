@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);html {
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap);html {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 10px; }
@@ -121,7 +121,8 @@ main {
 
 h2 {
   font-family: 'Roboto', sans-serif;
-  font-size: 26px;
+  font-size: 2.6rem;
+  font-weight: 500;
   text-align: center; }
 
 .preview {
@@ -139,5 +140,25 @@ h2 {
     cursor: pointer;
     width: 90px;
     height: 90px; }
+
+.btn {
+  display: block;
+  width: 12rem;
+  margin: 6rem auto 0 auto;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #fff;
+  background-image: linear-gradient(-90deg, #03396c, #005b96);
+  text-decoration: none;
+  border: none;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  cursor: pointer; }
+  .btn span {
+    display: inline-block;
+    padding: 0 0.5rem 0 0; }
 
 /*# sourceMappingURL=style.css.map*/

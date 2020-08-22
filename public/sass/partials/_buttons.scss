@@ -1,0 +1,22 @@
+.btn{
+    display: block;
+    width: 12rem;
+    margin: 6rem auto 0 auto;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #fff;
+    background-image: linear-gradient(-90deg, #03396c, #005b96);
+    text-decoration: none;
+    border: none;
+    border-radius: 0.3rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    span{
+        display: inline-block;
+        padding: 0 0.5rem 0 0;
+    }
+}

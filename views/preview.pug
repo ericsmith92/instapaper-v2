@@ -3,4 +3,7 @@ extends layout
 block content
     .preview
         each image in account.imageSources
-            img.preview_img(src=`${image}` draggable="true") 
+            img.preview_img(src=`${image}` draggable="true")
+    button.btn.stitch
+        span Stitch It!
+        i.fa.fa-arrow-circle-up
