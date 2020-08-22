@@ -10,11 +10,13 @@ import {previewEditor,
 
 import { stitchBtn, postJson } from './modules/stitch';
 
-previewEditor.addEventListener('dragstart', handleDragStart);
-previewEditor.addEventListener('dragend', handleDragEnd);
-previewEditor.addEventListener('dragover', handleDragOver);
-previewEditor.addEventListener('drop', handleDrop);
-previewEditor.addEventListener('touchstart', handleTouchStart);
-previewEditor.addEventListener('touchend', handleTouchEnd);
+if(window.location.pathname === '/scrape'){
+    previewEditor.addEventListener('dragstart', handleDragStart);
+    previewEditor.addEventListener('dragend', handleDragEnd);
+    previewEditor.addEventListener('dragover', handleDragOver);
+    previewEditor.addEventListener('drop', handleDrop);
+    previewEditor.addEventListener('touchstart', handleTouchStart);
+    previewEditor.addEventListener('touchend', handleTouchEnd);
 
-stitchBtn.addEventListener('click', postJson);
+    stitchBtn.addEventListener('click', postJson);
+}
