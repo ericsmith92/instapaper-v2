@@ -1,6 +1,6 @@
 extends layout
 
 block content
-    .images
+    .preview
         each image in account.imageSources
-            img(src=`${image}`)
+            img.preview_img(src=`${image}` draggable="true") 

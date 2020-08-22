@@ -124,4 +124,20 @@ h2 {
   font-size: 26px;
   text-align: center; }
 
+.preview {
+  width: 270px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 2.5px;
+  overflow: hidden; }
+  .preview:after {
+    content: '';
+    display: table;
+    clear: both; }
+  .preview_img {
+    float: left;
+    cursor: pointer;
+    width: 90px;
+    height: 90px; }
+
 /*# sourceMappingURL=style.css.map*/

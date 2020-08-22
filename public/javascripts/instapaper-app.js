@@ -1,5 +1,16 @@
 import '../sass/style.scss';
 
-import alert from './modules/alert';
+import {previewEditor, 
+        handleDragStart, 
+        handleDragEnd, 
+        handleDragOver, 
+        handleDrop, 
+        handleTouchStart, 
+        handleTouchEnd} from './modules/preview';
 
-alert();
+previewEditor.addEventListener("dragstart", handleDragStart);
+previewEditor.addEventListener("dragend", handleDragEnd);
+previewEditor.addEventListener("dragover", handleDragOver);
+previewEditor.addEventListener("drop", handleDrop);
+previewEditor.addEventListener("touchstart", handleTouchStart);
+previewEditor.addEventListener("touchend", handleTouchEnd);

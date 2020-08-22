@@ -1,0 +1,22 @@
+.preview{
+    width: 270px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
+    border-radius: 2.5px;
+    overflow: hidden;
+
+    &:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    &_img{
+        float: left;
+        cursor: pointer;
+        width: 90px;
+        height: 90px;
+    }
+}
