@@ -3,7 +3,6 @@ const Account = mongoose.model('Account');
 const axios = require('axios');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-const moment = require('moment');
 
 exports.homePage = (req, res) => {
     res.render('index');
