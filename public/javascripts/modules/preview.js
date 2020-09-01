@@ -67,4 +67,5 @@ export{ previewEditor,
         handleDragOver, 
         handleDrop, 
         handleTouchStart, 
-        handleTouchEnd};
+        handleTouchEnd
+    };
