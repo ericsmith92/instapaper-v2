@@ -6,6 +6,7 @@ const fs = require('fs');
 
 exports.stitch = async (req, res) => {
     const imageSrcs = Object.values(req.body);
+    console.log(imageSrcs);
     await resizeAndWriteThumbnails(imageSrcs);
     stitchImages(res);
 }
@@ -24,26 +25,12 @@ resizeAndWriteThumbnails = async (srcs) => {
   }
 }
 
-stitchImages = (res) => {
+stitchImages = async (res) => {
 
   const urls = fs.readdirSync('public/images/user-images/raptors/').map(file => `public/images/user-images/raptors/${file}`);
-  /*TODO: sort this array based on integer value of filename
-  right now we are getting:
-  [   'public/images/user-images/raptors/0.jpg',
-      'public/images/user-images/raptors/1.jpg',
-      'public/images/user-images/raptors/10.jpg',
-      'public/images/user-images/raptors/11.jpg',
-      'public/images/user-images/raptors/2.jpg',
-      'public/images/user-images/raptors/3.jpg',
-      'public/images/user-images/raptors/4.jpg',
-      'public/images/user-images/raptors/5.jpg',
-      'public/images/user-images/raptors/6.jpg',
-      'public/images/user-images/raptors/7.jpg',
-      'public/images/user-images/raptors/8.jpg',
-      'public/images/user-images/raptors/9.jpg' ]
-  */
-  console.log(urls);
-  const images = [`public/images/canvas/canvas.png`, ...urls]; 
+  const sortedUrls = await sortUrls(urls);
+  console.log(sortedUrls);
+  const images = [`public/images/canvas/canvas.png`, ...sortedUrls]; 
   const jimps = images.map(img => Jimp.read(img));
 
   Promise.all(jimps).then( _ => {
@@ -73,4 +60,28 @@ stitchImages = (res) => {
    });
 })
 .catch(err => console.log(err));
+}
+
+sortUrls = (urls) => {
+  const sortedUrls = urls.sort((a, b) => {
+    const firstPositionA = a.lastIndexOf('/');
+    const lastPositionA = a.indexOf('.');
+    const intA = parseInt(a.slice(firstPositionA + 1, lastPositionA));
+
+    const firstPositionB = b.lastIndexOf('/');
+    const lastPositionB = b.indexOf('.');
+    const intB = parseInt(b.slice(firstPositionB + 1, lastPositionB));
+
+    if (intA < intB) {
+        return -1;
+      }
+      if (intA > intB) {
+        return 1;
+      }
+    
+      // ints must be equal
+      return 0;
+  });
+
+  return sortedUrls;
 }

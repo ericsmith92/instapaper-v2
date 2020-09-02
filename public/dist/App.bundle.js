@@ -1006,12 +1006,11 @@ Object.defineProperty(exports, "__esModule", {
 var stitchBtn = document.querySelector('.btn.stitch');
 var axios = __webpack_require__(12);
 
-var stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
-    return img.src;
-});
-var myJson = Object.assign({}, stitchImgSrcs);
-
 var postJson = function postJson() {
+    var stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
+        return img.src;
+    });
+    var myJson = Object.assign({}, stitchImgSrcs);
     axios({
         method: 'post',
         url: '/stitch',
