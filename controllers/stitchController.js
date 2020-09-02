@@ -2,16 +2,10 @@ const path = require('path');
 const Jimp = require('jimp');
 const fs = require('fs');
 
-
-exports.stitch = async (req, res) => {
-    const imageSrcs = Object.values(req.body.sources);
-    await resizeAndWriteThumbnails(req, imageSrcs);
-    stitchImages(req, res);
-}
-
-resizeAndWriteThumbnails = async (req, srcs) => {
-  for(let i = 0; i < srcs.length; i++){
-    await Jimp.read(srcs[i])
+exports.resizeAndWriteThumbnails = async (req, res, next) => {
+  const imageSrcs = Object.values(req.body.sources);
+  for(let i = 0; i < imageSrcs.length; i++){
+    await Jimp.read(imageSrcs[i])
               .then(img => {
                   return img
                   .resize(300, 300)
@@ -21,13 +15,13 @@ resizeAndWriteThumbnails = async (req, srcs) => {
                   console.error(err);
     });
   }
+  next();
 }
 
-stitchImages = async (req, res) => {
+exports.stitchImages = async (req, res) => {
 
   const urls = fs.readdirSync(`public/images/user-images/${req.body.handle}/`).map(file => `public/images/user-images/${req.body.handle}/${file}`);
   const sortedUrls = await sortUrls(urls);
-  console.log(sortedUrls);
   const images = [`public/images/canvas/canvas.png`, ...sortedUrls]; 
   const jimps = images.map(img => Jimp.read(img));
 
@@ -54,6 +48,7 @@ stitchImages = async (req, res) => {
         const resObj = {
             'url': `public/images/user-images/${req.body.handle}/${uniqueString}.png`
         }
+        //TODO: res.render() a download view in pug
         res.json(resObj);
    });
 })

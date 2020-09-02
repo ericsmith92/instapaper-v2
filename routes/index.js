@@ -8,8 +8,8 @@ router.get('/', scrapeController.homePage);
 router.post('/scrape', scrapeController.checkAccount);
 
 //stitching routes
-router.post('/stitch', stitchController.stitch);
-
-
+//TODO: lets wrap middleware in catchErrors for async functions
+router.post('/stitch', stitchController.resizeAndWriteThumbnails, 
+                       stitchController.stitchImages);
 
 module.exports = router;
