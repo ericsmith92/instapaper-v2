@@ -3,11 +3,16 @@ const axios = require('axios');
 
 const postJson = () => {
     const stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(img => img.src);
-    const myJson = Object.assign({}, stitchImgSrcs);
+    const imgSrcsJson = Object.assign({}, stitchImgSrcs);
+    const handle = stitchBtn.dataset.handle;
+    
     axios({
         method: 'post',
         url: '/stitch',
-        data: myJson 
+        data: {
+          sources: imgSrcsJson,
+          handle
+        }
       });
 }
 

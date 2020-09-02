@@ -1001,21 +1001,26 @@ exports.handleTouchEnd = handleTouchEnd;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var stitchBtn = document.querySelector('.btn.stitch');
 var axios = __webpack_require__(12);
 
 var postJson = function postJson() {
-    var stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
-        return img.src;
-    });
-    var myJson = Object.assign({}, stitchImgSrcs);
-    axios({
-        method: 'post',
-        url: '/stitch',
-        data: myJson
-    });
+  var stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
+    return img.src;
+  });
+  var imgSrcsJson = Object.assign({}, stitchImgSrcs);
+  var handle = stitchBtn.dataset.handle;
+
+  axios({
+    method: 'post',
+    url: '/stitch',
+    data: {
+      sources: imgSrcsJson,
+      handle: handle
+    }
+  });
 };
 
 exports.stitchBtn = stitchBtn;

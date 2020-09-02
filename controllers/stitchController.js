@@ -1,23 +1,21 @@
 const path = require('path');
-const concat = require('concat-stream');
 const Jimp = require('jimp');
 const fs = require('fs');
 
 
 exports.stitch = async (req, res) => {
-    const imageSrcs = Object.values(req.body);
-    console.log(imageSrcs);
-    await resizeAndWriteThumbnails(imageSrcs);
-    stitchImages(res);
+    const imageSrcs = Object.values(req.body.sources);
+    await resizeAndWriteThumbnails(req, imageSrcs);
+    stitchImages(req, res);
 }
 
-resizeAndWriteThumbnails = async (srcs) => {
+resizeAndWriteThumbnails = async (req, srcs) => {
   for(let i = 0; i < srcs.length; i++){
     await Jimp.read(srcs[i])
               .then(img => {
                   return img
                   .resize(300, 300)
-                  .write(`public/images/user-images/raptors/${i}.jpg`);
+                  .write(`public/images/user-images/${req.body.handle}/${i}.jpg`);
               })
               .catch( err => {
                   console.error(err);
@@ -25,9 +23,9 @@ resizeAndWriteThumbnails = async (srcs) => {
   }
 }
 
-stitchImages = async (res) => {
+stitchImages = async (req, res) => {
 
-  const urls = fs.readdirSync('public/images/user-images/raptors/').map(file => `public/images/user-images/raptors/${file}`);
+  const urls = fs.readdirSync(`public/images/user-images/${req.body.handle}/`).map(file => `public/images/user-images/${req.body.handle}/${file}`);
   const sortedUrls = await sortUrls(urls);
   console.log(sortedUrls);
   const images = [`public/images/canvas/canvas.png`, ...sortedUrls]; 
@@ -52,9 +50,9 @@ stitchImages = async (res) => {
 
     let uniqueString = Date.now();
     
-   data[0].write(`public/images/user-images/raptors/${uniqueString}.png`, _ => {
+   data[0].write(`public/images/user-images/${req.body.handle}/${uniqueString}.png`, _ => {
         const resObj = {
-            'url': `public/images/user-images/raptors/${uniqueString}.png`
+            'url': `public/images/user-images/${req.body.handle}/${uniqueString}.png`
         }
         res.json(resObj);
    });
