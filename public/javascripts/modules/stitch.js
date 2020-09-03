@@ -13,6 +13,12 @@ const postJson = () => {
           sources: imgSrcsJson,
           handle
         }
+      })
+      .then((response) => {
+        window.location.assign(`/download?src=${response.data}`);
+      })
+      .catch((error) => {
+        console.log(error);
       });
 }
 

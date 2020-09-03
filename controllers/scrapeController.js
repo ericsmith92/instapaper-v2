@@ -54,7 +54,7 @@ scrapeAccount = async (req, res) => {
         }
         return;
     })  
-    .catch(function (error) {
+    .catch((error) => {
         console.log(error);
     });
 }

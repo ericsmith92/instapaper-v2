@@ -1020,6 +1020,10 @@ var postJson = function postJson() {
       sources: imgSrcsJson,
       handle: handle
     }
+  }).then(function (response) {
+    window.location.assign('/download?src=' + response.data);
+  }).catch(function (error) {
+    console.log(error);
   });
 };
 

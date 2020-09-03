@@ -47,7 +47,8 @@ exports.stitchImages = async (req, res) => {
     
    data[0].write(stitchedImagePath, _ => {
         //TODO: res.render() a download view in pug
-        res.json(stitchedImagePath);
+        console.log('here we are firing');
+        res.send(stitchedImagePath);
    });
 })
 .catch(err => console.log(err));
