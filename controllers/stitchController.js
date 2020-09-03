@@ -2,7 +2,9 @@ const Jimp = require('jimp');
 const fs = require('fs');
 
 exports.resizeAndWriteThumbnails = async (req, res, next) => {
+  
   const imageSrcs = Object.values(req.body.sources);
+  
   for(let i = 0; i < imageSrcs.length; i++){
     await Jimp.read(imageSrcs[i])
               .then(img => {
@@ -14,6 +16,7 @@ exports.resizeAndWriteThumbnails = async (req, res, next) => {
                   console.error(err);
     });
   }
+
   next();
 }
 
@@ -28,15 +31,15 @@ exports.stitchImages = async (req, res) => {
     return Promise.all(jimps);
   })
   .then( data => {
-    let countX = 0;
-    let countY = 0;
+    let pixelX = 0;
+    let pixelY = 0;
     for(let i = 0; i < data.length - 1; i++){
-      data[0].composite(data[i + 1], countX, countY);
+      data[0].composite(data[i + 1], pixelX, pixelY);
 
-      countX = (i + 1) % 3 !== 0 ? countX + 300 : 0;
+      pixelX = (i + 1) % 3 !== 0 ? pixelX + 300 : 0;
 
       if( (i + 1) % 3 === 0){
-        countY = countY + 300;
+        pixelY = pixelY + 300;
       }
     }
    
@@ -51,6 +54,7 @@ exports.stitchImages = async (req, res) => {
 }
 
 sortUrls = (urls) => {
+  
   const sortedUrls = urls.sort((a, b) => {
     const firstPositionA = a.lastIndexOf('/');
     const lastPositionA = a.indexOf('.');
