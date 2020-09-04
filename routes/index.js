@@ -14,5 +14,6 @@ router.post('/stitch', stitchController.resizeAndWriteThumbnails,
                        stitchController.stitchImages);
 
 router.get('/download', downloadController.renderDownload);
+router.post('/download', downloadController.downloadImage);
 
 module.exports = router;

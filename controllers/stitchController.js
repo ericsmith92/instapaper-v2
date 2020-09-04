@@ -46,8 +46,6 @@ exports.stitchImages = async (req, res) => {
     const stitchedImagePath = `public/images/user-images/${req.body.handle}/${Date.now()}.png`
     
    data[0].write(stitchedImagePath, _ => {
-        //TODO: res.render() a download view in pug
-        console.log('here we are firing');
         res.send(stitchedImagePath);
    });
 })
@@ -57,13 +55,9 @@ exports.stitchImages = async (req, res) => {
 sortUrls = (urls) => {
   
   const sortedUrls = urls.sort((a, b) => {
-    const firstPositionA = a.lastIndexOf('/');
-    const lastPositionA = a.indexOf('.');
-    const intA = parseInt(a.slice(firstPositionA + 1, lastPositionA));
-
-    const firstPositionB = b.lastIndexOf('/');
-    const lastPositionB = b.indexOf('.');
-    const intB = parseInt(b.slice(firstPositionB + 1, lastPositionB));
+    
+    const intA = parseInt(a.slice(a.lastIndexOf('/') + 1, a.indexOf('.')));
+    const intB = parseInt(b.slice(b.lastIndexOf('/') + 1, b.indexOf('.')));
 
     if (intA < intB) {
         return -1;
@@ -72,7 +66,6 @@ sortUrls = (urls) => {
         return 1;
       }
     
-      // ints must be equal
       return 0;
   });
 

@@ -1,6 +1,9 @@
 extends layout
 
+include mixins/_downloadForm
+
 block content
     .download
         img.download_img(src=`${finalImage.split('public/')[1]}` draggable="true")
-    button.btn.download(data-handle=`${finalImage}`) Download!
+    
+    +downloadForm(finalImage.split('public/')[1])
