@@ -24,6 +24,7 @@ exports.stitchImages = async (req, res) => {
 
   const urls = fs.readdirSync(`public/images/user-images/${req.body.handle}/`).map(file => `public/images/user-images/${req.body.handle}/${file}`);
   const sortedUrls = await sortUrls(urls);
+  //TODO: try chaining this map directly to the images array
   const images = [`public/images/canvas/canvas.png`, ...sortedUrls]; 
   const jimps = images.map(img => Jimp.read(img));
 
