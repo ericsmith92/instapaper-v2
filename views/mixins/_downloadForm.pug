@@ -2,5 +2,6 @@ mixin downloadForm(path)
 
     form#download(action="/download" METHOD="POST")
         input(type="hidden" name="path" value=`${path}`)
-        button(type="submit")
+        button.btn(type="submit")
+            span Download
             i.fa.fa-arrow-circle-down

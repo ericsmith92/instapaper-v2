@@ -24,7 +24,6 @@ exports.stitchImages = async (req, res) => {
 
   const urls = fs.readdirSync(`public/images/user-images/${req.body.handle}/`).map(file => `public/images/user-images/${req.body.handle}/${file}`);
   const sortedUrls = await sortUrls(urls);
-  //TODO: try chaining this map directly to the images array
   const images = [`public/images/canvas/canvas.png`, ...sortedUrls]; 
   const jimps = images.map(img => Jimp.read(img));
 
@@ -34,7 +33,6 @@ exports.stitchImages = async (req, res) => {
   .then( data => {
     let pixelX = 0;
     let pixelY = 0;
-    //TODO: make this loop logic cleaner by starting at i = 1, we don't need to loop over the first index of this array
     for(let i = 0; i < data.length - 1; i++){
       data[0].composite(data[i + 1], pixelX, pixelY);
 
