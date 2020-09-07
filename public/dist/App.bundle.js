@@ -1012,8 +1012,13 @@ exports.handleTouchEnd = handleTouchEnd;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.submitSearch = exports.searchForm = undefined;
+
+var _loader = __webpack_require__(33);
+
 var searchForm = document.getElementById('search-handle');
 var axios = __webpack_require__(1);
+
 
 var submitSearch = function submitSearch(e) {
 
@@ -1022,6 +1027,9 @@ var submitSearch = function submitSearch(e) {
   var regex = /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/;
 
   if (regex.test(searchInput.value)) {
+
+    (0, _loader.addLoader)();
+
     axios({
       method: 'post',
       url: '/scrape',
@@ -1055,8 +1063,13 @@ exports.submitSearch = submitSearch;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.postJson = exports.stitchBtn = undefined;
+
+var _loader = __webpack_require__(33);
+
 var stitchBtn = document.querySelector('.btn.stitch');
 var axios = __webpack_require__(1);
+
 
 var postJson = function postJson() {
   var stitchImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
@@ -1064,6 +1077,8 @@ var postJson = function postJson() {
   });
   var imgSrcsJson = Object.assign({}, stitchImgSrcs);
   var handle = stitchBtn.dataset.handle;
+
+  (0, _loader.addLoader)();
 
   axios({
     method: 'post',
@@ -2061,6 +2076,27 @@ if (path === '/scrape') {
 
     _stitch.stitchBtn.addEventListener('click', _stitch.postJson);
 }
+
+/***/ }),
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var addLoader = function addLoader() {
+    var main = document.querySelector('main');
+    main.querySelectorAll('*').forEach(function (n) {
+        return n.remove();
+    });
+    main.innerHTML = '<div class="loader"></div>';
+};
+
+exports.addLoader = addLoader;
 
 /***/ })
 /******/ ]);

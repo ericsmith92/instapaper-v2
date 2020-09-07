@@ -1,5 +1,6 @@
 const searchForm = document.getElementById('search-handle');
 const axios = require('axios');
+import { addLoader } from './loader';
 
 const submitSearch = (e) => {
     
@@ -8,6 +9,9 @@ const submitSearch = (e) => {
     const regex = /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/;
     
     if(regex.test(searchInput.value)){
+      
+      addLoader();
+
       axios({
         method: 'post',
         url: '/scrape',
