@@ -1,5 +1,7 @@
 import '../sass/style.scss';
 
+import { searchForm, submitSearch } from './modules/search';
+
 import {previewEditor, 
         handleDragStart, 
         handleDragEnd, 
@@ -10,7 +12,13 @@ import {previewEditor,
 
 import { stitchBtn, postJson } from './modules/stitch';
 
-if(window.location.pathname === '/scrape'){
+const path = window.location.pathname;
+
+if(path === '/'){
+    searchForm.addEventListener('submit', submitSearch);
+}
+
+if(path === '/scrape'){
     previewEditor.addEventListener('dragstart', handleDragStart);
     previewEditor.addEventListener('dragend', handleDragEnd);
     previewEditor.addEventListener('dragover', handleDragOver);

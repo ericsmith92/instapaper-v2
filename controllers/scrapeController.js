@@ -26,7 +26,8 @@ exports.checkAccount = async (req, res, next) => {
     //if less than an hour ago, head directly to preview
     if(diff <= millisecsHour){
         console.log('scraped under an hour ago', diff);
-        res.render('preview', { account });
+        //res.render('preview', { account });
+        res.json(account);
     }else{
         req.body.accountExists = true;
         scrapeAccount(req, res);
@@ -64,7 +65,8 @@ saveAccount = async (req, res) => {
     req.body.created = Date.now();
     const account = await (new Account(req.body)).save();
     
-    res.render('preview', { account });
+    //res.render('preview', { account });
+    res.json(account);
 }
 
 updateAccount = async (req, res) => {
@@ -75,5 +77,6 @@ updateAccount = async (req, res) => {
         runValidators: true
     }).exec();
 
-    res.render('preview', { account });
+    //res.render('preview', { account });
+    res.json(account);
 }
