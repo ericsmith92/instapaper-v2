@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    h2 Rearrange if you wish
     .preview
         each image in account.imageSources
             img.preview_img(src=`${image}` draggable="true")

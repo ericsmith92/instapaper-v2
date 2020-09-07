@@ -108,6 +108,18 @@ footer {
   #search-handle {
     max-width: 410px; } }
 
+.search-error {
+  max-width: 30rem;
+  height: 1.4rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  color: #8d0b0b; }
+
+@media all and (min-width: 768px) {
+  .search-error {
+    max-width: 41rem; } }
+
 .content {
   min-width: 100vw;
   min-height: calc(100vh - 67px); }
@@ -127,15 +139,6 @@ h2 {
   text-align: center; }
 
 .preview {
-  /*
-    width: 270px;
-    margin: 0 auto;
-    -webkit-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.75);
-    border-radius: 2.5px;
-    overflow: hidden;
-    */
   width: 270px;
   margin: 0 auto;
   box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.75);

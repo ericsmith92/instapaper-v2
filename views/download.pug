@@ -3,6 +3,7 @@ extends layout
 include mixins/_downloadForm
 
 block content
+    h2 Download
     - const finalImagePath = finalImage.split('public/')[1];
     .download
         img.download_img(src=`${finalImagePath}` draggable="true")

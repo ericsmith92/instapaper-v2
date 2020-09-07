@@ -16,18 +16,15 @@ const submitSearch = (e) => {
         }
       })
       .then((response) => {
-        //TODO: Pass Below as parameters and push to scrape
-        //window.location.assign(`/scrape`);
-        //https://stackoverflow.com/questions/6243051/how-to-pass-an-array-within-a-query-string/9547490
-        console.log(response.data.imageSources);
         const encodedImageSources = response.data.imageSources.map(url => encodeURIComponent(url)).join();
         window.location.assign(`/scrape?handle=${response.data.handle}&srcs=${encodedImageSources}`)
       })
       .catch((error) => {
         console.log(error);
       });
-    }else{
-      console.log('not a real instagram handle');
+    }else{ 
+      const searchError = document.querySelector('.search-error');
+      searchError.innerText = 'Invalid Instagram Handle';
     }
 }
 

@@ -1029,10 +1029,6 @@ var submitSearch = function submitSearch(e) {
         search: searchInput.value
       }
     }).then(function (response) {
-      //TODO: Pass Below as parameters and push to scrape
-      //window.location.assign(`/scrape`);
-      //https://stackoverflow.com/questions/6243051/how-to-pass-an-array-within-a-query-string/9547490
-      console.log(response.data.imageSources);
       var encodedImageSources = response.data.imageSources.map(function (url) {
         return encodeURIComponent(url);
       }).join();
@@ -1041,7 +1037,8 @@ var submitSearch = function submitSearch(e) {
       console.log(error);
     });
   } else {
-    console.log('not a real instagram handle');
+    var searchError = document.querySelector('.search-error');
+    searchError.innerText = 'Invalid Instagram Handle';
   }
 };
 
