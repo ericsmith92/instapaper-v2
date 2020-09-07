@@ -23,7 +23,7 @@ exports.resizeAndWriteThumbnails = async (req, res, next) => {
 exports.stitchImages = async (req, res) => {
 
   const urls = fs.readdirSync(`public/images/user-images/${req.body.handle}/`).map(file => `public/images/user-images/${req.body.handle}/${file}`);
-  const sortedUrls = await sortUrls(urls);
+  const sortedUrls = sortUrls(urls);
   const jimps = [`public/images/canvas/canvas.png`, ...sortedUrls].map(img => Jimp.read(img));
 
   Promise.all(jimps).then( _ => {
