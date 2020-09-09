@@ -4,6 +4,7 @@ const scrapeController = require('../controllers/scrapeController');
 const previewController = require('../controllers/previewController');
 const stitchController = require('../controllers/stitchController');
 const downloadController = require('../controllers/downloadController');
+const errorController = require('../controllers/errorController');
 
 //scraping routes
 router.get('/', scrapeController.homePage);
@@ -19,5 +20,8 @@ router.post('/stitch', stitchController.resizeAndWriteThumbnails,
 
 router.get('/download', downloadController.renderDownload);
 router.post('/download', downloadController.downloadImage);
+
+//insufficient posts
+router.get('/not-available', errorController.renderError);
 
 module.exports = router;

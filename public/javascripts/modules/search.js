@@ -20,11 +20,16 @@ const submitSearch = (e) => {
         }
       })
       .then((response) => {
+        console.log('fired'); 
         const encodedImageSources = response.data.imageSources.map(url => encodeURIComponent(url)).join();
         window.location.assign(`/scrape?handle=${response.data.handle}&srcs=${encodedImageSources}`)
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          if(error.response.status === 501){
+            window.location.assign(`/not-available`);
+          }
+        }
       });
     }else{ 
       const searchError = document.querySelector('.search-error');
