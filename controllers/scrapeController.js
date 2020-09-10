@@ -43,12 +43,12 @@ scrapeAccount = async (req, res) => {
         const dom = new JSDOM(data);
         const pageSourceJSON = JSON.parse(dom.window.document.querySelectorAll('script[type="text/javascript"]')[3].textContent.replace('window._sharedData = ', '').slice(0, -1));
         const availableThumbnails = pageSourceJSON['entry_data']["ProfilePage"][0].graphql.user.edge_owner_to_timeline_media.edges;
-
+        
         if(availableThumbnails.length < 12){
             res.status(501).end();
             return;
         }
-
+        
         const sources = availableThumbnails.map(thumbnail => thumbnail.node.thumbnail_src);
         req.body.imageSources = sources;
         
@@ -62,6 +62,8 @@ scrapeAccount = async (req, res) => {
     })  
     .catch((error) => {
         console.log(error);
+        res.status(404).end();
+        return;
     });
 }
 

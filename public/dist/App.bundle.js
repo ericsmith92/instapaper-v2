@@ -1064,7 +1064,7 @@ var submitSearch = function submitSearch(e) {
       window.location.assign('/scrape?handle=' + response.data.handle + '&srcs=' + encodedImageSources);
     }).catch(function (error) {
       if (error.response) {
-        if (error.response.status === 501) {
+        if (error.response.status === 501 || error.response.status === 404) {
           window.location.assign('/not-available');
         }
       }

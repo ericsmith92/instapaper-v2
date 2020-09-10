@@ -26,7 +26,7 @@ const submitSearch = (e) => {
       })
       .catch((error) => {
         if (error.response) {
-          if(error.response.status === 501){
+          if(error.response.status === 501 || error.response.status === 404){
             window.location.assign(`/not-available`);
           }
         }
