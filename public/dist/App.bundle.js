@@ -935,6 +935,7 @@ var addLoader = function addLoader() {
         return n.remove();
     });
     main.innerHTML = '<div class="loader"></div>';
+    document.querySelector('body').classList.remove('stacked');
 };
 
 exports.addLoader = addLoader;
@@ -2100,6 +2101,10 @@ if (path === '/scrape') {
     _preview.previewEditor.addEventListener('touchend', _preview.handleTouchEnd);
 
     _stitch.stitchBtn.addEventListener('click', _stitch.postJson);
+}
+
+if (path === '/scrape' || path === '/download') {
+    document.querySelector('body').classList.add('stacked');
 }
 
 /***/ })

@@ -28,3 +28,7 @@ if(path === '/scrape'){
 
     stitchBtn.addEventListener('click', postJson);
 }
+
+if(path === '/scrape' || path === '/download'){
+    document.querySelector('body').classList.add('stacked');
+}
