@@ -41,11 +41,15 @@ exports.stitchImages = async (req, res) => {
         pixelY = pixelY + 300;
       }
     }
-   
-    const stitchedImagePath = `public/images/user-images/${req.body.handle}/${Date.now()}.png`
+    
+    const handle = req.body.handle;
+    const stitchedImagePath = `public/images/user-images/${handle}/${Date.now()}.png`
     
    data[0].write(stitchedImagePath, _ => {
-        res.send(stitchedImagePath);
+        res.json({
+          handle,
+          stitchedImagePath
+        });
    });
 })
 .catch(err => console.log(err));

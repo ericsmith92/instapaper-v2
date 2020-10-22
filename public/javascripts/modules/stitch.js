@@ -18,7 +18,7 @@ const postJson = () => {
         }
       })
       .then((response) => {
-        window.location.assign(`/download?src=${response.data}`);
+        window.location.assign(`/download?src=${response.data.stitchedImagePath}&handle=${response.data.handle}`);
       })
       .catch((error) => {
         console.log(error);

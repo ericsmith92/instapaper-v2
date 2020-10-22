@@ -1114,7 +1114,7 @@ var postJson = function postJson() {
       handle: handle
     }
   }).then(function (response) {
-    window.location.assign('/download?src=' + response.data);
+    window.location.assign('/download?src=' + response.data.stitchedImagePath + '&handle=' + response.data.handle);
   }).catch(function (error) {
     console.log(error);
   });
