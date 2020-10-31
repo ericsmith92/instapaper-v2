@@ -20,7 +20,6 @@ exports.downloadImage = (req,res) => {
             (async () => {
                 try {
                     await del(pathToUserDirectory);
-                    console.log(pathToUserDirectory);
                 } catch (err) {
                     console.error(`Error while deleting.`);
                 }
