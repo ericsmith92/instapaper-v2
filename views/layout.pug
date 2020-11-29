@@ -1,3 +1,5 @@
+include mixins/_modal
+
 doctype html
 html(lang='en')
   head
@@ -22,6 +24,7 @@ html(lang='en')
           span 
             i.fa.fa-heart
           span  by Eric Smith
+    +modal()
     block scripts
       script(src="/dist/App.bundle.js")
       script(str="https://use.fontawesome.com/63b918bac0.js")

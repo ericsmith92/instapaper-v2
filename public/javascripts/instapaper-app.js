@@ -12,10 +12,21 @@ import {previewEditor,
 
 import { stitchBtn, postJson } from './modules/stitch';
 
+import {modalCloseBtn, 
+        modalNoShow, 
+        toggleModal, 
+        modifyLocalStorage} from './modules/modal';
+
 const path = window.location.pathname;
 
 if(path === '/'){
     searchForm.addEventListener('submit', submitSearch);
+    modalNoShow.addEventListener('click', modifyLocalStorage);
+    modalCloseBtn.addEventListener('click', toggleModal);
+
+    if(localStorage.getItem('noShow') === null){
+        toggleModal();
+    }
 }
 
 if(path === '/scrape'){
@@ -32,3 +43,7 @@ if(path === '/scrape'){
 if(path === '/scrape' || path === '/download'){
     document.querySelector('body').classList.add('stacked');
 }
+
+
+modalNoShow.addEventListener('click', modifyLocalStorage);
+modalCloseBtn.addEventListener('click', toggleModal);
