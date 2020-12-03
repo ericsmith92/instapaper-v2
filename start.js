@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 //import environmental variables from our variables.env file
 require('dotenv').config({path: 'variables.env'});
 
-mongoose.connect(process.env.DATABASE);
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', (err) => {
   console.error(`failed to connect → ${err.message}`);
 });

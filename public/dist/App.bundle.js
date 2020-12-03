@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -419,7 +419,7 @@ module.exports = {
 "use strict";
 
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(16);
 
 /***/ }),
 /* 2 */
@@ -429,11 +429,11 @@ module.exports = __webpack_require__(15);
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(22);
+var settle = __webpack_require__(23);
 var buildURL = __webpack_require__(9);
-var buildFullPath = __webpack_require__(19);
-var parseHeaders = __webpack_require__(29);
-var isURLSameOrigin = __webpack_require__(27);
+var buildFullPath = __webpack_require__(20);
+var parseHeaders = __webpack_require__(30);
+var isURLSameOrigin = __webpack_require__(28);
 var createError = __webpack_require__(5);
 
 module.exports = function xhrAdapter(config) {
@@ -530,7 +530,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(25);
+      var cookies = __webpack_require__(26);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -648,7 +648,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(21);
+var enhanceError = __webpack_require__(22);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -742,7 +742,7 @@ module.exports = function mergeConfig(config1, config2) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(28);
+var normalizeHeaderName = __webpack_require__(29);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -830,7 +830,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
 
 /***/ }),
 /* 8 */
@@ -950,6 +950,38 @@ exports.addLoader = addLoader;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var modal = document.querySelector('.modal');
+var modalCloseBtn = document.querySelector('.modal_btn');
+var modalNoShow = document.getElementById('noshow');
+
+function toggleModal() {
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+
+function modifyLocalStorage() {
+    if (this.checked) {
+        localStorage.setItem('noShow', 'true');
+    } else {
+        localStorage.removeItem('noShow');
+    }
+}
+
+exports.modal = modal;
+exports.modalCloseBtn = modalCloseBtn;
+exports.modalNoShow = modalNoShow;
+exports.toggleModal = toggleModal;
+exports.modifyLocalStorage = modifyLocalStorage;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 var previewEditor = document.querySelector('.preview');
 var previewImgSrcs = Array.from(document.querySelectorAll('.preview_img')).map(function (img) {
     return img.src;
@@ -1024,7 +1056,7 @@ exports.handleTouchStart = handleTouchStart;
 exports.handleTouchEnd = handleTouchEnd;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1080,7 +1112,7 @@ exports.searchForm = searchForm;
 exports.submitSearch = submitSearch;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1124,13 +1156,13 @@ exports.stitchBtn = stitchBtn;
 exports.postJson = postJson;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1138,7 +1170,7 @@ exports.postJson = postJson;
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(8);
-var Axios = __webpack_require__(17);
+var Axios = __webpack_require__(18);
 var mergeConfig = __webpack_require__(6);
 var defaults = __webpack_require__(7);
 
@@ -1174,14 +1206,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(3);
-axios.CancelToken = __webpack_require__(16);
+axios.CancelToken = __webpack_require__(17);
 axios.isCancel = __webpack_require__(4);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(30);
+axios.spread = __webpack_require__(31);
 
 module.exports = axios;
 
@@ -1189,7 +1221,7 @@ module.exports = axios;
 module.exports.default = axios;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1252,7 +1284,7 @@ CancelToken.source = function source() {
 module.exports = CancelToken;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1260,8 +1292,8 @@ module.exports = CancelToken;
 
 var utils = __webpack_require__(0);
 var buildURL = __webpack_require__(9);
-var InterceptorManager = __webpack_require__(18);
-var dispatchRequest = __webpack_require__(20);
+var InterceptorManager = __webpack_require__(19);
+var dispatchRequest = __webpack_require__(21);
 var mergeConfig = __webpack_require__(6);
 
 /**
@@ -1352,7 +1384,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = Axios;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1410,14 +1442,14 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 module.exports = InterceptorManager;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(26);
-var combineURLs = __webpack_require__(24);
+var isAbsoluteURL = __webpack_require__(27);
+var combineURLs = __webpack_require__(25);
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -1436,14 +1468,14 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(23);
+var transformData = __webpack_require__(24);
 var isCancel = __webpack_require__(4);
 var defaults = __webpack_require__(7);
 
@@ -1502,7 +1534,7 @@ module.exports = function dispatchRequest(config) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1551,7 +1583,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1576,7 +1608,7 @@ module.exports = function settle(resolve, reject, response) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1602,7 +1634,7 @@ module.exports = function transformData(data, headers, fns) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1621,7 +1653,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1680,7 +1712,7 @@ function nonStandardBrowserEnv() {
 }();
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1702,7 +1734,7 @@ module.exports = function isAbsoluteURL(url) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1771,7 +1803,7 @@ function nonStandardBrowserEnv() {
 }();
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1789,7 +1821,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1845,7 +1877,7 @@ module.exports = function parseHeaders(headers) {
 };
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1879,7 +1911,7 @@ module.exports = function spread(callback) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2072,21 +2104,21 @@ process.umask = function () {
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(14);
+__webpack_require__(15);
 
-var _search = __webpack_require__(12);
+var _search = __webpack_require__(13);
 
-var _preview = __webpack_require__(11);
+var _preview = __webpack_require__(12);
 
-var _stitch = __webpack_require__(13);
+var _stitch = __webpack_require__(14);
 
-var _modal = __webpack_require__(34);
+var _modal = __webpack_require__(11);
 
 var path = window.location.pathname;
 
@@ -2117,39 +2149,6 @@ if (path === '/scrape' || path === '/download') {
 
 _modal.modalNoShow.addEventListener('click', _modal.modifyLocalStorage);
 _modal.modalCloseBtn.addEventListener('click', _modal.toggleModal);
-
-/***/ }),
-/* 33 */,
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var modal = document.querySelector('.modal');
-var modalCloseBtn = document.querySelector('.modal_btn');
-var modalNoShow = document.getElementById('noshow');
-
-function toggleModal() {
-    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-}
-
-function modifyLocalStorage() {
-    if (this.checked) {
-        localStorage.setItem('noShow', 'true');
-    } else {
-        localStorage.removeItem('noShow');
-    }
-}
-
-exports.modal = modal;
-exports.modalCloseBtn = modalCloseBtn;
-exports.modalNoShow = modalNoShow;
-exports.toggleModal = toggleModal;
-exports.modifyLocalStorage = modifyLocalStorage;
 
 /***/ })
 /******/ ]);
