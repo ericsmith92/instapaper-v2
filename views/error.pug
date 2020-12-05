@@ -3,5 +3,5 @@ extends layout
 block content
     .inner
         h2= status
-        p= message
+        p.error_message= message
     pre.error!= stackHighlighted

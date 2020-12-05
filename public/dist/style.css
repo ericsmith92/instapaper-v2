@@ -284,4 +284,10 @@ h2 {
     .modal_li ul span {
       font-weight: 600; }
 
+.error_message {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px; }
+
 /*# sourceMappingURL=style.css.map*/

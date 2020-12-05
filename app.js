@@ -36,6 +36,9 @@ app.use(errorHandlers.notFound);
 if (app.get('env') === 'development') {
     /* Development Error Handler - Prints stack trace */
     app.use(errorHandlers.developmentErrors);
-  }
+}
+
+  // production error handler
+app.use(errorHandlers.productionErrors);
 
 module.exports = app;
